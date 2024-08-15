@@ -1,113 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anonymous Feedback Form</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>Anonymous Feedback Form</h1>
-        <p class="intro-text">Vos feedback vont beaucoup m'aider. <span class="highlight">C'est anonyme</span>.</p>
-        <!-- Language Selection -->
-        <div class="language-selection">
-            <label for="language">Choose your language:</label>
-            <select id="language" onchange="showForm()">
-                <option value="">Select...</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="ar">العربية</option>
-            </select>
-        </div>
+      <h1>Anonymous Feedback Form</h1>
+      <p class="intro-text">
+        Vos feedback vont beaucoup m'aider.
+        <span class="highlight">C'est anonyme</span>.
+      </p>
+      <!-- Language Selection -->
+      <div class="language-selection">
+        <label for="language">Choose your language:</label>
+        <select id="language" onchange="showForm()">
+          <option value="">Select...</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
 
-        <!-- English Form -->
-        <form id="form-en" class="feedback-form" style="display:none;">
-            <h2>English</h2>
-            <label for="qualities-en">What are my qualities?</label>
-            <textarea id="qualities-en" name="qualities-en" rows="4" required></textarea>
+      <!-- English Form -->
+      <form id="form-en" class="feedback-form" style="display: none">
+        <h2>English</h2>
+        <label for="qualities-en">What are my qualities?</label>
+        <textarea
+          id="qualities-en"
+          name="qualities-en"
+          rows="4"
+          required
+        ></textarea>
 
-            <label for="flaws-en">What are my flaws?</label>
-            <textarea id="flaws-en" name="flaws-en" rows="4" required></textarea>
+        <label for="flaws-en">What are my flaws?</label>
+        <textarea id="flaws-en" name="flaws-en" rows="4" required></textarea>
 
-            <button type="submit">Submit</button>
-        </form>
+        <button type="submit">Submit</button>
+      </form>
 
-        <!-- French Form -->
-        <form id="form-fr" class="feedback-form" style="display:none;">
-            <h2>Français</h2>
-            <label for="qualities-fr">Quelles sont mes qualités?</label>
-            <textarea id="qualities-fr" name="qualities-fr" rows="4" required></textarea>
+      <!-- French Form -->
+      <form id="form-fr" class="feedback-form" style="display: none">
+        <h2>Français</h2>
+        <label for="qualities-fr">Quelles sont mes qualités?</label>
+        <textarea
+          id="qualities-fr"
+          name="qualities-fr"
+          rows="4"
+          required
+        ></textarea>
 
-            <label for="flaws-fr">Quels sont mes défauts?</label>
-            <textarea id="flaws-fr" name="flaws-fr" rows="4" required></textarea>
+        <label for="flaws-fr">Quels sont mes défauts?</label>
+        <textarea id="flaws-fr" name="flaws-fr" rows="4" required></textarea>
 
-            <button type="submit">Submit</button>
-        </form>
+        <button type="submit">Submit</button>
+      </form>
 
-        <!-- Arabic Form -->
-        <form id="form-ar" class="feedback-form" style="display:none;" dir="rtl">
-            <h2>العربية</h2>
-            <label for="qualities-ar">ما هي صفاتي؟</label>
-            <textarea id="qualities-ar" name="qualities-ar" rows="4" required></textarea>
+      <!-- Arabic Form -->
+      <form id="form-ar" class="feedback-form" style="display: none" dir="rtl">
+        <h2>العربية</h2>
+        <label for="qualities-ar">ما هي صفاتي؟</label>
+        <textarea
+          id="qualities-ar"
+          name="qualities-ar"
+          rows="4"
+          required
+        ></textarea>
 
-            <label for="flaws-ar">ما هي عيوبي؟</label>
-            <textarea id="flaws-ar" name="flaws-ar" rows="4" required></textarea>
+        <label for="flaws-ar">ما هي عيوبي؟</label>
+        <textarea id="flaws-ar" name="flaws-ar" rows="4" required></textarea>
 
-            <button type="submit">Submit</button>
-        </form>
+        <button type="submit">Submit</button>
+      </form>
     </div>
-
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
     <script>
-        function showForm() {
-            const selectedLanguage = document.getElementById('language').value;
+      function showForm() {
+        const selectedLanguage = document.getElementById("language").value;
 
-            // Hide all forms
-            document.getElementById('form-en').style.display = 'none';
-            document.getElementById('form-fr').style.display = 'none';
-            document.getElementById('form-ar').style.display = 'none';
+        // Hide all forms
+        document.getElementById("form-en").style.display = "none";
+        document.getElementById("form-fr").style.display = "none";
+        document.getElementById("form-ar").style.display = "none";
 
-            // Show the selected form
-            if (selectedLanguage === 'en') {
-                document.getElementById('form-en').style.display = 'block';
-            } else if (selectedLanguage === 'fr') {
-                document.getElementById('form-fr').style.display = 'block';
-            } else if (selectedLanguage === 'ar') {
-                document.getElementById('form-ar').style.display = 'block';
-            }
+        // Show the selected form
+        if (selectedLanguage === "en") {
+          document.getElementById("form-en").style.display = "block";
+        } else if (selectedLanguage === "fr") {
+          document.getElementById("form-fr").style.display = "block";
+        } else if (selectedLanguage === "ar") {
+          document.getElementById("form-ar").style.display = "block";
         }
+      }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            emailjs.init("6mvqxpJacenV0vkKC");
+      document.addEventListener("DOMContentLoaded", function () {
+        emailjs.init("6mvqxpJacenV0vkKC");
 
-            document.querySelectorAll('.feedback-form').forEach(function(form) {
-                form.addEventListener("submit", function(event) {
-                    event.preventDefault();
+        document.querySelectorAll(".feedback-form").forEach(function (form) {
+          form.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-                    // Get data from the current form
-                    const formData = new FormData(form);
-                    const qualities = formData.get(`qualities-${language}`);
-                    const flaws = formData.get(`flaws-${language}`);
+            // Get data from the current form
+            const formData = new FormData(form);
+            const qualities = formData.get(`qualities-${language}`);
+            const flaws = formData.get(`flaws-${language}`);
 
-                    const feedbackData = {
-                        qualities: qualities,
-                        flaws: flaws
-                    };
+            const feedbackData = {
+              qualities: qualities,
+              flaws: flaws,
+            };
 
-                    // Send email using EmailJS
-                    emailjs.send("service_9c0nymt", "template_yahnwyg", feedbackData)
-                        .then(function(response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                            alert("Feedback sent successfully!");
-                            form.reset();
-                        }, function(error) {
-                            console.log('FAILED...', error);
-                            alert("An error occurred while sending your feedback.");
-                        });
-                });
-            });
+            // Send email using EmailJS
+            debugger;
+            emailjs
+              .send("service_9c0nymt", "template_yahnwyg", feedbackData)
+              .then(
+                function (response) {
+                  console.log("SUCCESS!", response.status, response.text);
+                  alert("Feedback sent successfully!");
+                  form.reset();
+                },
+                function (error) {
+                  console.log("FAILED...", error);
+                  alert("An error occurred while sending your feedback.");
+                }
+              );
+          });
         });
+      });
     </script>
-</body>
+  </body>
 </html>
