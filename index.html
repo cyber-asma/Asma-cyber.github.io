@@ -3,39 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to Cyber Asma's personal website. Explore my projects, blog, and more.">
-    <title>Cyber Asma's Personal Website</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Anonymous Feedback Form</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="create-account.html">Create Account</a></li>
-            </ul>
-        </nav>
-        <h1>Welcome to Cyber Asma's Personal Website</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Latest Projects</h2>
-            <p>Check out my latest projects and what I've been working on.</p>
-            <!-- Add project summaries here -->
-        </section>
-        <section>
-            <h2>Latest Blog Posts</h2>
-            <p>Read my latest blog posts and thoughts on various topics.</p>
-            <!-- Add blog post summaries here -->
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Cyber Asma</p>
-    </footer>
-    <script src="js/scripts.js"></script>
+    <div class="container">
+        <h1>Anonymous Feedback Form</h1>
+        <p class="intro-text">Vos feedback vont beaucoup m'aider. <span class="highlight">C'est anonyme</span>.</p>
+        <!-- Language Selection -->
+        <div class="language-selection">
+            <label for="language">Choose your language:</label>
+            <select id="language" onchange="showForm()">
+                <option value="">Select...</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+
+        <!-- English Form -->
+        <form id="form-en" class="feedback-form" style="display:none;">
+            <h2>English</h2>
+            <label for="qualities-en">What are my qualities?</label>
+            <textarea id="qualities-en" name="qualities-en" rows="4" required></textarea>
+
+            <label for="flaws-en">What are my flaws?</label>
+            <textarea id="flaws-en" name="flaws-en" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- French Form -->
+        <form id="form-fr" class="feedback-form" style="display:none;">
+            <h2>Français</h2>
+            <label for="qualities-fr">Quelles sont mes qualités?</label>
+            <textarea id="qualities-fr" name="qualities-fr" rows="4" required></textarea>
+
+            <label for="flaws-fr">Quels sont mes défauts?</label>
+            <textarea id="flaws-fr" name="flaws-fr" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Arabic Form -->
+        <form id="form-ar" class="feedback-form" style="display:none;" dir="rtl">
+            <h2>العربية</h2>
+            <label for="qualities-ar">ما هي صفاتي؟</label>
+            <textarea id="qualities-ar" name="qualities-ar" rows="4" required></textarea>
+
+            <label for="flaws-ar">ما هي عيوبي؟</label>
+            <textarea id="flaws-ar" name="flaws-ar" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        function showForm() {
+            const selectedLanguage = document.getElementById('language').value;
+
+            // Hide all forms
+            document.getElementById('form-en').style.display = 'none';
+            document.getElementById('form-fr').style.display = 'none';
+            document.getElementById('form-ar').style.display = 'none';
+
+            // Show the selected form
+            if (selectedLanguage === 'en') {
+                document.getElementById('form-en').style.display = 'block';
+            } else if (selectedLanguage === 'fr') {
+                document.getElementById('form-fr').style.display = 'block';
+            } else if (selectedLanguage === 'ar') {
+                document.getElementById('form-ar').style.display = 'block';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            emailjs.init("6mvqxpJacenV0vkKC");
+
+            document.querySelectorAll('.feedback-form').forEach(function(form) {
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault();
+
+                    // Get data from the current form
+                    const formData = new FormData(form);
+                    const qualities = formData.get(`qualities-${language}`);
+                    const flaws = formData.get(`flaws-${language}`);
+
+                    const feedbackData = {
+                        qualities: qualities,
+                        flaws: flaws
+                    };
+
+                    // Send email using EmailJS
+                    emailjs.send("service_9c0nymt", "template_yahnwyg", feedbackData)
+                        .then(function(response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                            alert("Feedback sent successfully!");
+                            form.reset();
+                        }, function(error) {
+                            console.log('FAILED...', error);
+                            alert("An error occurred while sending your feedback.");
+                        });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
