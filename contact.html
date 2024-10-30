@@ -112,7 +112,7 @@
                         <span class="mx-1">&middot;</span>
                         <a class="small" href="#!">Terms</a>
                         <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Contact</a>
+                        <a class="small" href="#!">Contact.</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                emailjs.init(EMAILJS_USER_ID);
+                emailjs.init('6mvqxpJacenV0vkKC');
 
                 document.getElementById('contactForm').addEventListener('submit', function (event) {
                     event.preventDefault();
@@ -145,7 +145,7 @@
                             document.getElementById('contactForm').reset();
                         },
                         function (error) {
-                            console.log('FAILED...', error);
+                            console.log('FAILED....', error);
                             document.getElementById('submitSuccessMessage').classList.add('d-none');
                             document.getElementById('submitErrorMessage').classList.remove('d-none');
                         }
