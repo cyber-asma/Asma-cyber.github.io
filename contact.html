@@ -124,7 +124,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                emailjs.init('EMAILJS_USER_ID');
+                emailjs.init(process.env.EMAILJS_USER_ID);
 
                 document.getElementById('contactForm').addEventListener('submit', function (event) {
                     event.preventDefault();
